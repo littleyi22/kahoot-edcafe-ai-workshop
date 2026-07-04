@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 時代的高效互動課堂 | 奕鈞老師研習工作坊</title>
+  <meta name="description" content="從 Kahoot 遊戲化體驗到 edcafe 深度學習，奕鈞老師帶領國中小教師探索 AI 時代的高效互動課堂新模式。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== CSS Variables & Reset ===== */
+    :root {
+      --blue-50:  #eff6ff;
+      --blue-100: #dbeafe;
+      --blue-200: #bfdbfe;
+      --blue-400: #60a5fa;
+      --blue-500: #3b82f6;
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
+      --blue-800: #1e40af;
+      --blue-900: #1e3a8a;
+      --indigo-600: #4f46e5;
+      --sky-400:  #38bdf8;
+      --sky-500:  #0ea5e9;
+      --white:    #ffffff;
+      --gray-50:  #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --gray-900: #0f172a;
+      --amber-400: #fbbf24;
+      --amber-500: #f59e0b;
+      --green-400: #4ade80;
+      --green-500: #22c55e;
+      --green-600: #16a34a;
+      --emerald-500: #10b981;
+      --purple-500: #a855f7;
+      --purple-600: #9333ea;
+
+      --radius-sm:  8px;
+      --radius-md:  14px;
+      --radius-lg:  20px;
+      --radius-xl:  28px;
+      --radius-2xl: 40px;
+
+      --shadow-sm:  0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md:  0 4px 16px rgba(37,99,235,.12), 0 2px 6px rgba(0,0,0,.06);
+      --shadow-lg:  0 10px 40px rgba(37,99,235,.16), 0 4px 12px rgba(0,0,0,.08);
+      --shadow-xl:  0 20px 60px rgba(37,99,235,.2);
+
+      --transition: all .25s cubic-bezier(.4,0,.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-800);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--gray-100); }
+    ::-webkit-scrollbar-thumb { background: var(--blue-400); border-radius: 3px; }
+
+    /* ===== Navigation ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--blue-100);
+      padding: 0 clamp(1rem, 4vw, 3rem);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--blue-700);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      text-decoration: none;
+    }
+    .nav-logo .logo-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--blue-600), var(--sky-500));
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(.75rem, 2vw, 1.75rem);
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray-600);
+      font-size: .875rem;
+      font-weight: 500;
+      padding: .35rem .6rem;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .nav-links a:hover { color: var(--blue-600); background: var(--blue-50); }
+
+    /* ===== Hero Section ===== */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 6rem clamp(1.5rem, 6vw, 5rem) 4rem;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-800) 35%, var(--blue-700) 65%, var(--indigo-600) 100%);
+      z-index: 0;
+    }
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: float linear infinite;
+      opacity: .15;
+    }
+    .particle:nth-child(1)  { width:320px;height:320px;background:var(--sky-400);top:-80px;right:-60px;animation-duration:18s; }
+    .particle:nth-child(2)  { width:180px;height:180px;background:var(--blue-400);bottom:10%;left:-40px;animation-duration:14s;animation-delay:-6s; }
+    .particle:nth-child(3)  { width:120px;height:120px;background:var(--amber-400);top:30%;right:15%;animation-duration:22s;animation-delay:-3s; }
+    .particle:nth-child(4)  { width:80px;height:80px;background:var(--white);top:60%;right:30%;animation-duration:16s;animation-delay:-9s; }
+    .particle:nth-child(5)  { width:200px;height:200px;background:var(--purple-500);bottom:-60px;right:20%;animation-duration:25s;animation-delay:-12s; }
+
+    @keyframes float {
+      0%   { transform: translateY(0) rotate(0deg); }
+      50%  { transform: translateY(-40px) rotate(180deg); }
+      100% { transform: translateY(0) rotate(360deg); }
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 100px;
+      padding: .4rem 1rem;
+      color: var(--blue-100);
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .05em;
+      margin-bottom: 1.75rem;
+      backdrop-filter: blur(8px);
+      animation: fadeInDown .8s ease both;
+    }
+    .badge-dot {
+      width: 7px; height: 7px;
+      background: var(--green-400);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      margin-bottom: 1.25rem;
+      animation: fadeInUp .8s .15s ease both;
+    }
+    .hero-title .highlight {
+      background: linear-gradient(90deg, var(--amber-400), var(--sky-400));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: var(--blue-200);
+      margin-bottom: 2.5rem;
+      max-width: 540px;
+      font-weight: 300;
+      animation: fadeInUp .8s .3s ease both;
+    }
+
+    .speaker-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius-lg);
+      padding: .65rem 1.25rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+      animation: fadeInUp .8s .45s ease both;
+    }
+    .speaker-avatar {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--amber-400), var(--amber-500));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .speaker-info { line-height: 1.3; }
+    .speaker-name { font-size: .95rem; font-weight: 700; color: var(--white); }
+    .speaker-role { font-size: .75rem; color: var(--blue-200); }
+
+    .hero-cta {
+      animation: fadeInUp .8s .6s ease both;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: linear-gradient(135deg, var(--amber-400), var(--amber-500));
+      color: var(--gray-900);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: .85rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(251,191,36,.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(251,191,36,.5);
+      background: linear-gradient(135deg, #fcd34d, var(--amber-400));
+    }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      color: var(--white);
+      font-weight: 500;
+      font-size: .9rem;
+      padding: .75rem 1.5rem;
+      border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,.35);
+      text-decoration: none;
+      cursor: pointer;
+      background: transparent;
+      transition: var(--transition);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.6); }
+
+    @keyframes fadeInDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeInUp   { from { opacity:0; transform:translateY(24px);  } to { opacity:1; transform:translateY(0); } }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: rgba(255,255,255,.5);
+      font-size: .75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+      animation: bounceY 2s infinite;
+    }
+    .scroll-arrow { font-size: 1.2rem; }
+    @keyframes bounceY { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+    /* ===== Section Base ===== */
+    section { padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 6vw, 5rem); }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue-600);
+      background: var(--blue-50);
+      border: 1px solid var(--blue-100);
+      padding: .35rem .9rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      color: var(--gray-900);
+      line-height: 1.25;
+      margin-bottom: .75rem;
+    }
+    .section-desc {
+      color: var(--gray-600);
+      font-size: clamp(.95rem, 1.5vw, 1.05rem);
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    /* ===== Unit 01 Kahoot ===== */
+    #unit-kahoot {
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    #unit-kahoot::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, var(--blue-100) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .unit-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .unit-number {
+      flex-shrink: 0;
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--blue-600), var(--blue-800));
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white);
+      font-weight: 800;
+      font-size: 1.1rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .highlight-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .h-card {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: default;
+    }
+    .h-card:hover {
+      transform: translateY(-4px);
+      border-color: transparent;
+      box-shadow: var(--shadow-lg);
+    }
+    .h-card-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .h-card.blue  .h-card-icon { background: var(--blue-50);  }
+    .h-card.amber .h-card-icon { background: #fffbeb; }
+    .h-card.green .h-card-icon { background: #f0fdf4; }
+
+    .h-card-label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+    .h-card.blue  .h-card-label { color: var(--blue-600); }
+    .h-card.amber .h-card-label { color: var(--amber-500); }
+    .h-card.green .h-card-label { color: var(--green-600); }
+
+    .h-card-title { font-size: 1rem; font-weight: 700; color: var(--gray-800); margin-bottom: .4rem; }
+    .h-card-desc  { font-size: .875rem; color: var(--gray-600); line-height: 1.6; }
+
+    .btn-resource {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      background: linear-gradient(135deg, var(--amber-400), var(--amber-500));
+      color: var(--gray-900);
+      font-weight: 700;
+      font-size: .95rem;
+      padding: .85rem 2rem;
+      border-radius: var(--radius-xl);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(245,158,11,.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-resource:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(245,158,11,.45);
+    }
+    .btn-resource:active { transform: translateY(0); }
+
+    .btn-resource-blue {
+      background: linear-gradient(135deg, var(--blue-500), var(--blue-700));
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(37,99,235,.3);
+    }
+    .btn-resource-blue:hover { box-shadow: 0 8px 32px rgba(37,99,235,.45); }
+
+    /* ===== Unit 02 edcafe ===== */
+    #unit-edcafe {
+      background: linear-gradient(180deg, var(--gray-50) 0%, var(--blue-50) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #unit-edcafe::before {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -60px;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, var(--blue-200) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .edcafe-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .edcafe-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 2rem 1.75rem;
+      border: 1px solid var(--gray-200);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .edcafe-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+    .edcafe-card.card-flash::before { background: linear-gradient(90deg, var(--blue-400), var(--sky-500)); }
+    .edcafe-card.card-quiz::before  { background: linear-gradient(90deg, var(--purple-500), var(--indigo-600)); }
+    .edcafe-card.card-data::before  { background: linear-gradient(90deg, var(--emerald-500), var(--green-600)); }
+
+    .edcafe-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+      border-color: transparent;
+    }
+    .edcafe-card-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .edcafe-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: .25rem;
+    }
+    .edcafe-card-en {
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .05em;
+      margin-bottom: 1rem;
+    }
+    .card-flash .edcafe-card-en { color: var(--sky-500); }
+    .card-quiz  .edcafe-card-en { color: var(--purple-500); }
+    .card-data  .edcafe-card-en { color: var(--emerald-500); }
+
+    .edcafe-card-desc { font-size: .875rem; color: var(--gray-600); line-height: 1.7; }
+    .edcafe-card-tag {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      padding: .3rem .75rem;
+      border-radius: 100px;
+      margin-top: 1rem;
+    }
+    .card-flash .edcafe-card-tag { background: var(--blue-50);  color: var(--blue-600); }
+    .card-quiz  .edcafe-card-tag { background: #f5f3ff;         color: var(--purple-600); }
+    .card-data  .edcafe-card-tag { background: #ecfdf5;         color: var(--green-600); }
+
+    /* ===== Resources Section ===== */
+    #resources {
+      background: var(--white);
+    }
+    .resource-container { max-width: 840px; }
+
+    .accordion-item {
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      margin-bottom: 1.25rem;
+    }
+    .accordion-item.open {
+      border-color: var(--blue-400);
+      box-shadow: 0 4px 20px rgba(37,99,235,.1);
+    }
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      background: var(--gray-50);
+      cursor: pointer;
+      user-select: none;
+      transition: var(--transition);
+      gap: 1rem;
+    }
+    .accordion-header:hover { background: var(--blue-50); }
+    .accordion-item.open .accordion-header { background: var(--blue-50); border-bottom: 1px solid var(--blue-100); }
+    .accordion-title-group { display: flex; align-items: center; gap: .85rem; }
+    .accordion-icon-box {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--blue-500), var(--blue-700));
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .accordion-title { font-size: 1rem; font-weight: 700; color: var(--gray-800); }
+    .accordion-subtitle { font-size: .8rem; color: var(--gray-500); margin-top: .1rem; }
+    .accordion-chevron {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--blue-100);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .3s ease;
+      flex-shrink: 0;
+      color: var(--blue-600);
+      font-size: .8rem;
+    }
+    .accordion-item.open .accordion-chevron {
+      transform: rotate(180deg);
+      background: var(--blue-600);
+      color: var(--white);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .5s cubic-bezier(.4,0,.2,1);
+    }
+    .accordion-item.open .accordion-body { max-height: 2400px; }
+
+    .accordion-content { padding: 1.5rem; }
+    .copy-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: .75rem;
+    }
+    .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: var(--blue-600);
+      color: var(--white);
+      border: none;
+      padding: .45rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: .78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+    .btn-copy:hover { background: var(--blue-700); transform: translateY(-1px); }
+    .btn-copy.copied { background: var(--green-600); }
+
+    .text-block {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      font-size: .88rem;
+      line-height: 1.9;
+      color: var(--gray-700);
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 500px;
+      overflow-y: auto;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    .text-block::-webkit-scrollbar { width: 4px; }
+    .text-block::-webkit-scrollbar-thumb { background: var(--blue-300); border-radius: 2px; }
+
+    /* ===== Stats Strip ===== */
+    #stats {
+      background: linear-gradient(135deg, var(--blue-800), var(--blue-900));
+      padding: 3rem clamp(1.5rem, 6vw, 5rem);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 900;
+      color: var(--amber-400);
+      display: block;
+      line-height: 1;
+      margin-bottom: .4rem;
+    }
+    .stat-label { font-size: .85rem; color: var(--blue-200); }
+
+    /* ===== Footer ===== */
+    footer {
+      background: var(--gray-900);
+      color: var(--gray-400);
+      padding: 2.5rem clamp(1.5rem, 6vw, 5rem);
+      text-align: center;
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .footer-logo { font-size: 1.1rem; font-weight: 700; color: var(--white); }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: .85rem;
+      transition: var(--transition);
+    }
+    .footer-links a:hover { color: var(--blue-400); }
+    .footer-copy { font-size: .78rem; color: var(--gray-600); line-height: 1.8; }
+    .back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: var(--blue-600);
+      color: var(--white);
+      padding: .5rem 1.2rem;
+      border-radius: 100px;
+      font-size: .8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .back-to-top:hover { background: var(--blue-500); transform: translateY(-2px); }
+
+    .section-divider {
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue-500), var(--sky-400), var(--blue-500));
+      border: none;
+      margin: 0;
+    }
+
+    /* ===== Scroll Reveal ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .12s; }
+    .reveal-delay-2 { transition-delay: .24s; }
+    .reveal-delay-3 { transition-delay: .36s; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 640px) {
+      nav .nav-links { display: none; }
+      .highlight-cards { grid-template-columns: 1fr; }
+      .edcafe-cards     { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 640px) and (max-width: 1024px) {
+      .highlight-cards { grid-template-columns: repeat(3, 1fr); }
+      .edcafe-cards     { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (orientation: portrait) and (max-width: 1024px) {
+      .edcafe-cards     { grid-template-columns: 1fr; }
+      .highlight-cards  { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav id="top" aria-label="主要導覽">
+    <a href="#hero" class="nav-logo">
+      <span class="logo-icon">🎓</span>
+      奕鈞老師研習工作坊
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#unit-kahoot">Kahoot 單元</a></li>
+      <li><a href="#unit-edcafe">edcafe 單元</a></li>
+      <li><a href="#resources">素材庫</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero" aria-labelledby="hero-title">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-grid"  aria-hidden="true"></div>
+    <div class="hero-particles" aria-hidden="true">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        114 學年度 線上研習工作坊
+      </div>
+
+      <h1 id="hero-title" class="hero-title">
+        AI 時代的<br />
+        <span class="highlight">高效互動課堂</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        從 Kahoot 遊戲化體驗到 edcafe 深度學習<br />
+        讓科技成為教學的超級助手，而不是額外的負擔
+      </p>
+
+      <div class="speaker-tag" aria-label="講者資訊">
+        <div class="speaker-avatar" aria-hidden="true">奕</div>
+        <div class="speaker-info">
+          <div class="speaker-name">奕鈞老師</div>
+          <div class="speaker-role">教育科技推廣講師 · 數位備課達人</div>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a id="cta-kahoot"
+           href="#"
+           class="btn-primary"
+           title="加入 Kahoot 破冰測驗（請將 href 替換為實際遊戲連結）"
+           aria-label="加入 Kahoot 破冰測驗">
+          🚀 加入破冰測驗
+        </a>
+        <a href="#unit-kahoot" class="btn-outline" aria-label="了解課程內容">
+          ↓ 了解課程內容
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <span>向下捲動</span>
+      <span class="scroll-arrow">▼</span>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Stats Strip -->
+  <section id="stats" aria-label="研習亮點數據">
+    <div class="stats-grid">
+      <div class="reveal">
+        <span class="stat-number">2</span>
+        <div class="stat-label">📚 核心工具平台</div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <span class="stat-number">3+</span>
+        <div class="stat-label">🎮 互動模式探索</div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <span class="stat-number">AI</span>
+        <div class="stat-label">🤖 輔助出題備課</div>
+      </div>
+      <div class="reveal reveal-delay-3">
+        <span class="stat-number">∞</span>
+        <div class="stat-label">📊 數據驅動教學</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Unit 01 Kahoot -->
+  <section id="unit-kahoot" aria-labelledby="kahoot-title">
+    <div class="unit-header reveal">
+      <div class="unit-number" aria-hidden="true">01</div>
+      <div>
+        <div class="section-label">🎯 第一單元 · 遊戲化破冰與備課自動化</div>
+        <h2 id="kahoot-title" class="section-title">Kahoot!&nbsp; 跨越遊戲的教學力</h2>
+        <p class="section-desc">
+          不只是課堂娛樂！探索 Kahoot 的完整教學潛力——從破冰暖身到 AI 輔助出題，
+          讓每一道題都成為學習的精準工具。
+        </p>
+      </div>
+    </div>
+
+    <div class="highlight-cards" role="list">
+      <div class="h-card blue reveal" role="listitem">
+        <div class="h-card-icon">🚀</div>
+        <div class="h-card-label">體驗</div>
+        <div class="h-card-title">太空冒險模式</div>
+        <div class="h-card-desc">
+          在沒有任何先備知識的情境下，親身體驗學生的挑戰與樂趣。
+          打破傳統，先玩後學，激發探索動機！
+        </div>
+      </div>
+      <div class="h-card amber reveal reveal-delay-1" role="listitem">
+        <div class="h-card-icon">🔍</div>
+        <div class="h-card-label">揭密</div>
+        <div class="h-card-title">不只是經典模式</div>
+        <div class="h-card-desc">
+          探索教學模式（Teaching Mode）與多樣化題型——填空、投票、謎題——
+          讓 Kahoot 真正服務課程目標。
+        </div>
+      </div>
+      <div class="h-card green reveal reveal-delay-2" role="listitem">
+        <div class="h-card-icon">⚡</div>
+        <div class="h-card-label">實戰</div>
+        <div class="h-card-title">AI 輔助出題與高效匯入</div>
+        <div class="h-card-desc">
+          用 AI 一鍵生成結構化題目，再透過專屬匯入工具批次上傳，
+          備課時間從小時縮短到分鐘。
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <a id="btn-kahoot-importer"
+         href="#"
+         class="btn-resource"
+         title="開啟 Kahoot 試題匯入生成器（請將 href 替換為實際連結）"
+         aria-label="開啟 Kahoot 試題匯入生成器">
+        ⚙️ 開啟 Kahoot 試題匯入生成器
+        <span style="font-size:.8rem;opacity:.85;font-weight:500;">→ 一鍵匯入題目</span>
+      </a>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Unit 02 edcafe -->
+  <section id="unit-edcafe" aria-labelledby="edcafe-title">
+    <div class="unit-header reveal">
+      <div class="unit-number" style="background:linear-gradient(135deg,var(--purple-500),var(--indigo-600));" aria-hidden="true">02</div>
+      <div>
+        <div class="section-label" style="color:var(--purple-600);background:#f5f3ff;border-color:#e9d5ff;">📊 第二單元 · 知識鞏固與數據診斷</div>
+        <h2 id="edcafe-title" class="section-title">edcafe 讓學習深化、數據說話</h2>
+        <p class="section-desc">
+          超越傳統練習，用科學化的學習設計強化記憶留存，
+          並透過即時分析掌握每位學生的學習盲點。
+        </p>
+      </div>
+    </div>
+
+    <div class="edcafe-cards" role="list">
+      <div class="edcafe-card card-flash reveal" role="listitem">
+        <span class="edcafe-card-icon" aria-hidden="true">🃏</span>
+        <div class="edcafe-card-title">閃卡</div>
+        <div class="edcafe-card-en">Flashcards</div>
+        <div class="edcafe-card-desc">
+          運用「間隔重複」（Spaced Repetition）認知科學原理，
+          幫助學生在最佳時機複習，精準記憶核心概念，事半功倍。
+        </div>
+        <span class="edcafe-card-tag">🧠 記憶科學</span>
+      </div>
+      <div class="edcafe-card card-quiz reveal reveal-delay-1" role="listitem">
+        <span class="edcafe-card-icon" aria-hidden="true">✏️</span>
+        <div class="edcafe-card-title">測驗模式</div>
+        <div class="edcafe-card-en">Quiz</div>
+        <div class="edcafe-card-desc">
+          個人化學習節奏讓每位學生都能在自己的步調中完成學習，
+          是實施形成性評量（Formative Assessment）的絕佳利器。
+        </div>
+        <span class="edcafe-card-tag">📝 形成性評量</span>
+      </div>
+      <div class="edcafe-card card-data reveal reveal-delay-2" role="listitem">
+        <span class="edcafe-card-icon" aria-hidden="true">📈</span>
+        <div class="edcafe-card-title">分析助理</div>
+        <div class="edcafe-card-en">Analytics</div>
+        <div class="edcafe-card-desc">
+          即時掌握全班學習盲點，識別高頻錯誤概念，
+          實現真正的數據驅動教學（Data-Driven Instruction）。
+        </div>
+        <span class="edcafe-card-tag">📊 數據驅動教學</span>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <a id="btn-edcafe"
+         href="#"
+         class="btn-resource btn-resource-blue"
+         title="前往 edcafe 體驗平台（請將 href 替換為實際連結）"
+         aria-label="前往 edcafe 體驗平台">
+        🌐 前往 edcafe 體驗平台
+      </a>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Resources / Material -->
+  <section id="resources" aria-labelledby="resource-title">
+    <div class="resource-container">
+      <div class="reveal">
+        <div class="section-label">📁 核心文本與素材</div>
+        <h2 id="resource-title" class="section-title">本日實戰素材庫</h2>
+        <p class="section-desc">
+          以下為本次研習使用的《一文看懂 AI 演進史》文本與素養題庫，
+          供老師們複製練習，直接導入 Kahoot 或 edcafe 使用。
+        </p>
+      </div>
+
+      <!-- Accordion 1 -->
+      <div class="accordion-item reveal" id="acc-1">
+        <div class="accordion-header"
+             role="button" tabindex="0"
+             aria-expanded="false" aria-controls="acc-body-1"
+             onclick="toggleAccordion('acc-1')"
+             onkeydown="if(event.key==='Enter'||event.key===' ')toggleAccordion('acc-1')">
+          <div class="accordion-title-group">
+            <div class="accordion-icon-box" aria-hidden="true">🤖</div>
+            <div>
+              <div class="accordion-title">《一文看懂 AI 演進史》閱讀文本</div>
+              <div class="accordion-subtitle">完整文章 · 適合貼入 edcafe 或印發</div>
+            </div>
+          </div>
+          <div class="accordion-chevron" aria-hidden="true">▼</div>
+        </div>
+        <div class="accordion-body" id="acc-body-1" role="region">
+          <div class="accordion-content">
+            <div class="copy-bar">
+              <button class="btn-copy" id="copy-btn-1"
+                      onclick="copyText('text-1','copy-btn-1')"
+                      aria-label="一鍵複製文本">📋 一鍵複製</button>
+            </div>
+            <div class="text-block" id="text-1">🚀 縮短世紀的距離：一文看懂 AI 演進史
+
+一、什麼是 AI？——讓「電腦變聰明」的夢想
+
+人工智慧（Artificial Intelligence，簡稱 AI）說穿了，就是「讓電腦學會做原本只有人類才能做的行為」。現在電腦每天在做的翻譯、下棋、語音辨識等，都屬於這個範疇。
+
+如果我們把 AI 技術由大到小分類，主要包含：
+・規則系統：由人工寫好的邏輯（如：if...then...）控制程式執行。
+・搜尋演算法：能計算種種可能性並找出最佳解（如：早期的下棋程式）。
+・機器學習：不餵固定規則，而是讓電腦「從資料中自己找規律」。
+・深度學習：模仿人類大腦的「多層神經網路」來處理複雜資料。
+・生成式 AI：現在最夯的，電腦不只是判斷，而是「主動創作」文字、圖像、音樂。
+
+小結：AI 不只是所謂「超越人的機器」，而是一套讓電腦得以「學會思考、學會判斷」的技術總稱。
+
+────────────────────────────────
+
+二、「圖靈測試」——機器到底能不能騙過人類？
+
+・關鍵人物：艾倫・圖靈（Alan Turing，英國數學家，被譽為電腦科學之父）
+・關鍵年份：1950 年
+
+在那個連電腦都還不普及的年代，圖靈就提出了屬於那個世代的思考實驗——「圖靈測試」。
+
+假設你和兩個「對象」透過文字對話，其中一個可能是真人，另一個則可能是具備某種模式的機器人。如果最後你完全無法辨別你對話到底是人還是機器，那麼這台機器就可以被認定「具有智慧」。
+
+歷史意義：這個思想實驗將「智慧」定義為一種可測試、可驗證的行為。「能不能用對話騙過真人？」也成為 AI 發展的重要目標。
+
+────────────────────────────────
+
+三、達特茅斯會議——人工智慧的正式命名
+
+・關鍵人物：約翰・麥卡錫（John McCarthy）等一群頂尖學者
+・關鍵年份：1956 年
+
+1956 年夏天，一群科學家在美國達特茅斯學院舉辦了一場為期兩個月的研討會，討論如何讓機器學會使用語言、形成概念並解決問題。
+
+會議期間，科學家約翰·麥卡錫第一次正式使用了 Artificial Intelligence（人工智慧）這個詞。
+・Artificial：人工的
+・Intelligence：智慧
+・兩者結合，標誌了「人工智慧」這個科學領域的正式誕生。
+
+歷史意義：從這一刻起，「AI」不再是科幻小說的零散概念，正式成為一個嚴謹的學術學科。
+
+────────────────────────────────
+
+四、機器學習（Machine Learning）——讓電腦自己長本事
+
+・關鍵年份：1980 年代起，後來蓬勃發展
+
+早期 AI 的頭幾十年，人們發現要把世界上所有的例子全部寫入程式碼，根本是不可能的任務。因此科學家轉換思維：「不再幫電腦寫死規則了，讓它自己學習。」這就是「機器學習」。
+
+・過去的方式：輸入「資料」＋ 人工寫好的「規則」→ 電腦輸出「答案」
+・機器學習：輸入海量的「資料」＋ 正確的答案 → 電腦自己找出「規則」！
+
+電腦自己學到的規則，未來遇到新資料，就能自主判斷並給出答案。日常生活中的垃圾郵件過濾、人臉辨識、影音平台的精準推薦，這些後來全都靠機器學習來實現。
+
+小結：機器學習就是「用大量資料訓練電腦，讓它自己學出規則」，為後來的深度學習和 LLM 奠定了根本基礎。
+
+────────────────────────────────
+
+五、Transformer 誕生：改變 AI 世界大腦的設計
+
+關鍵事件：2017 年，《Attention is All You Need》論文
+
+Google 研究團隊提出了新模型架構：Transformer！
+
+・自注意力機制（Self-Attention）：讓模型在讀一段話的時候，能夠「判斷每個詞彼此的關聯性」。例如「月球」，可以自動去關聯前面的「宇宙」「太空」。
+・為什麼很重要：幾乎所有主流大型語言模型（如 GPT、Gemini）都使用 Transformer 架構，可以把它想成「特別強大的下一代 AI 大腦設計」。
+
+────────────────────────────────
+
+六、LLM：超大型語言模型是什麼？
+
+・LLM（Large Language Model，大型語言模型）：基於 Transformer 架構，用超大量文字資料訓練出來的模型。
+・本質上：它不斷在「預測下一個詞（Token）是什麼」，從而產生一段有邏輯的文字。
+・特色：越大的參數、越多的訓練資料，語言能力通常越強。代表如 GPT 系列、Gemini 等。
+
+可以把 LLM 想成是「讀了非常多書，特別擅長用語言溝通的文字大師」。
+
+────────────────────────────────
+
+七、生成式 AI：真正能「創造內容」的 AI
+
+1. 什麼是生成式 AI
+生成式 AI（Generative AI）不只是在「判斷」或「分類」資料，而是能「創造新東西」——包含圖像（Midjourney、DALL·E）、音樂、影片等。
+
+2. 為什麼能從實驗室走到大眾市場？「五大支柱」
+・技術架構革命：2017 年的 Transformer 提供了強大的技術基礎。
+・算力與硬體提升：NVIDIA 等公司的 GPU 讓大規模並行計算可行，訓練時間從幾十年縮短到幾週。
+・網路大數據累積：海量網路文本讓模型的「嬰兒食物」愈來愈豐富。
+・門檻降低：過去用 AI 要寫程式，現在只要輸入提示詞（Prompt）就行了。
+・精確的產業應用場景：寫作、改程式、影像生成，讓人馬上看到好處。
+
+────────────────────────────────
+
+八、《太空歌劇院》引發人們對於 AI 視覺生成的震撼
+
+・作品介紹：2022 年 8 月，美國人傑森・艾倫（Jason Allen）利用 AI 工具 Midjourney 製作的數位畫作《太空歌劇院》，在科羅拉多美術館的競賽中奪得首獎。
+・製作過程：耗時超過 100 小時，輸入 642 次提示詞不斷微調，再用 Photoshop 潤色修細節。這件事讓全世界大討論「什麼是原創作？AI 算不算是工具？」
+
+────────────────────────────────
+
+九、ChatGPT：讓普通人第一次真實感受到能聊天的 AI
+
+・關鍵事件：OpenAI 在 2022 年 11 月推出聊天機器人。
+・為什麼瞬間爆紅：它就像一個簡單的聊天視窗，卻能幫忙寫作、改程式、出主意。
+・關鍵技術：除了龐大的訓練資料，最關鍵是加入了 RLHF（從人類反饋中學習的強化學習）技術微調，讓 AI 的回答更符合人類期許和道德規範。很多人說這是第一次覺得「AI 好像真的懂人話」。
+
+────────────────────────────────
+
+十、總結：從一個問題，到讓每天都有 AI
+
+把以上串起來，可以看到 AI 有一條清晰的主線：
+
+1. 圖靈測試 (1950)：思考機器能不能和人一樣聊天。
+2. AI 正式命名 (1956)：人工智慧變成一個學科。
+3. 機器學習 (1980年代後大爆發)：讓電腦從資料中自己找規律。
+4. Transformer 誕生 (2017)：奠定了現今大型語言模型（LLM）的基礎。
+5. 生成式 AI 崛起《太空歌劇院》(2022.08)：AI 視覺生成震驚世界，引發人討論。
+6. ChatGPT 爆發 (2022.11)：用門檻極低的自然語言互動，讓 AI 走入每個人的日常。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accordion 2 -->
+      <div class="accordion-item reveal reveal-delay-1" id="acc-2">
+        <div class="accordion-header"
+             role="button" tabindex="0"
+             aria-expanded="false" aria-controls="acc-body-2"
+             onclick="toggleAccordion('acc-2')"
+             onkeydown="if(event.key==='Enter'||event.key===' ')toggleAccordion('acc-2')">
+          <div class="accordion-title-group">
+            <div class="accordion-icon-box" style="background:linear-gradient(135deg,var(--amber-400),var(--amber-500));" aria-hidden="true">❓</div>
+            <div>
+              <div class="accordion-title">AI 演進史 ✕ 素養測驗題庫</div>
+              <div class="accordion-subtitle">Kahoot / edcafe 匯入題組 · 共 10 題</div>
+            </div>
+          </div>
+          <div class="accordion-chevron" aria-hidden="true">▼</div>
+        </div>
+        <div class="accordion-body" id="acc-body-2" role="region">
+          <div class="accordion-content">
+            <div class="copy-bar">
+              <button class="btn-copy" id="copy-btn-2"
+                      onclick="copyText('text-2','copy-btn-2')"
+                      aria-label="一鍵複製題庫">📋 一鍵複製</button>
+            </div>
+            <div class="text-block" id="text-2">【AI 演進史 素養測驗題庫】共 10 題
+適用：Kahoot / edcafe Quiz 模式匯入
+
+━━━━━━━━━━━━━━━━━━━━
+
+第 1 題（知識）
+AI 的全文「Artificial Intelligence」，中文最正確的翻譯是？
+(A) 人工記憶
+(B) 人工智慧  ✅
+(C) 自動控制
+(D) 機器語言
+
+━━━━━━━━━━━━━━━━━━━━
+
+第 2 題（理解）
+下列哪一個描述，最符合「圖靈測試」的核心概念？
+(A) 機器打敗人類棋手
+(B) 機器透過文字對話讓人無法辨別是人或機器  ✅
+(C) 機器能夠計算最複雜的數學題
+(D) 機器替代所有人類工作
+
+━━━━━━━━━━━━━━━━━━━━
+
+第 3 題（知識）
+「人工智慧」這個詞在哪一年、哪個場合被正式命名？
+(A) 1950 年，劍橋大學
+(B) 1956 年，達特茅斯會議  ✅
+(C) 1969 年，阿波羅計畫
+(D) 1980 年，矽谷發表會
+
+━━━━━━━━━━━━━━━━━━━━
+
+第 4 題（理解）
+關於「機器學習」，下列敘述何者最為正確？
+(A) 由工程師手動輸入所有規則
+(B) 讓機器透過大量資料自己找出規律  ✅
+(C) 機器只能處理數字，不能處理文字
+(D) 機器學習就是讓機器上網查資料
+
+━━━━━━━━━━━━━━━━━━━━
+
+第 5 題（素養應用）
+老師想篩選出班上「最容易寫錯的 10 個英文單字」讓學生加強練習，這個需求最接近哪一種 AI 技術的應用？
+(A) 規則系統
+(B) 機器學習 / 資料分析  ✅
+(C) 圖靈測試
+(D) 大型語言模型
+
+━━━━━━━━━━━━━━━━━━━━
+
+第 6 題（知識）
+Google 於 2017 年發表了哪個影響深遠的 AI 架構，幾乎成為現在所有大型語言模型的基礎？
+(A) AlphaGo
+(B) BERT
+(C) Transformer  ✅
+(D) DALL-E
+
+━━━━━━━━━━━━━━━━━━━━
+
+第 7 題（理解）
+「LLM（大型語言模型）」的核心運作原理，最接近下列哪一項？
+(A) 用人工規則回答問題
+(B) 不斷預測「下一個字詞最可能是什麼」  ✅
+(C) 每次回答都透過網路搜尋最新資訊
+(D) 直接記憶所有的知識問答
+
+━━━━━━━━━━━━━━━━━━━━
+
+第 8 題（素養評估）
+「生成式 AI」與「傳統 AI」最核心的差異是什麼？
+(A) 生成式 AI 只能辨識圖片
+(B) 傳統 AI 速度比生成式 AI 慢
+(C) 生成式 AI 能主動「創造」新內容，而非僅分類或判斷  ✅
+(D) 兩者完全相同，只是名稱不同
+
+━━━━━━━━━━━━━━━━━━━━
+
+第 9 題（素養分析）
+傑森・艾倫用 AI 製作的畫作《太空歌劇院》在美術競賽奪得首獎，引發的最大社會討論是什麼？
+(A) AI 是否能取代所有職業
+(B) AI 生成的作品算不算「原創」？  ✅
+(C) Midjourney 是否應該免費開放
+(D) 電腦是否比人類更有藝術天份
+
+━━━━━━━━━━━━━━━━━━━━
+
+第 10 題（素養整合）
+ChatGPT 在 2022 年 11 月推出後瞬間爆紅，最主要的原因是？
+(A) 它是第一個能下棋的 AI
+(B) 它的介面極為低門檻，用自然語言就能對話並完成各種任務  ✅
+(C) 它是完全免費且無限制使用的
+(D) 它能直接連結所有網站的即時資料
+
+━━━━━━━━━━━━━━━━━━━━
+答案對照：1-B / 2-B / 3-B / 4-B / 5-B / 6-C / 7-B / 8-C / 9-B / 10-B</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Footer -->
+  <footer aria-label="頁尾">
+    <div class="footer-inner">
+      <div class="footer-logo">🎓 奕鈞老師的數位備課室</div>
+      <nav class="footer-links" aria-label="頁尾導覽">
+        <a href="#unit-kahoot">Kahoot 單元</a>
+        <a href="#unit-edcafe">edcafe 單元</a>
+        <a href="#resources">素材庫</a>
+      </nav>
+      <a href="#top" class="back-to-top" aria-label="返回頁首">↑ 返回頁首</a>
+      <p class="footer-copy">
+        © 2026 奕鈞老師 版權所有 | 版本：v.1.0<br />
+        奕鈞老師的數位備課室 · AI 時代的高效互動課堂 研習工作坊
+      </p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Accordion toggle
+    function toggleAccordion(id) {
+      const item = document.getElementById(id);
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.accordion-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        item.querySelector('.accordion-header').setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // One-click copy
+    function copyText(textId, btnId) {
+      const text = document.getElementById(textId).innerText;
+      const btn  = document.getElementById(btnId);
+      const done = () => {
+        btn.classList.add('copied');
+        btn.textContent = '✅ 已複製！';
+        setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = '📋 一鍵複製'; }, 2500);
+      };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+      } else {
+        fallbackCopy(text, done);
+      }
+    }
+    function fallbackCopy(text, cb) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); cb(); } catch(e) {}
+      document.body.removeChild(ta);
+    }
+
+    // Scroll reveal via IntersectionObserver
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // Nav active highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const activeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.style.color = '');
+          const lnk = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (lnk) lnk.style.color = 'var(--blue-600)';
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => activeObserver.observe(s));
+
+    // Placeholder link alert
+    document.querySelectorAll('a[href="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        alert('⚙️ 連結尚未設定\n\n' + (a.getAttribute('title') || '請在 HTML 中將 href="#" 替換為實際連結網址。'));
+      });
+    });
+  </script>
+</body>
+</html>
