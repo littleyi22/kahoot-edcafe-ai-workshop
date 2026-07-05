@@ -243,10 +243,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: clamp(2rem, 5vw, 4rem);
+      gap: clamp(1.25rem, 3vw, 3rem);
       width: 100%;
     }
-    .hero-content { flex: 1 1 0; min-width: 0; max-width: 680px; }
+    .hero-content { flex: 0 0 32%; min-width: 360px; max-width: 620px; }
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -321,7 +321,16 @@
       object-position: top center;
       border-radius: 50%;
     }
-    .speaker-name { font-size: 1rem; font-weight: 700; color: var(--white); }
+    .speaker-link {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .speaker-link:hover {
+      background: rgba(255,255,255,.16);
+      border-color: rgba(255,255,255,.32);
+      transform: translateY(-2px);
+    }    .speaker-name { font-size: 1rem; font-weight: 700; color: var(--white); }
     .speaker-role { font-size: .8rem; color: var(--blue-200); margin-top: .1rem; }
 
     .hero-cta {
@@ -646,14 +655,15 @@
     /* 分隔線（章節之間） */
     /* Hero 右側圖片 */
     .hero-image-wrap {
-      flex: 0 0 auto;
+      flex: 1 1 68%;
+      min-width: 0;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
     }
     .hero-image {
-      width: clamp(180px, 28vw, 400px);
-      max-height: 75vh;
+      width: min(100%, 1100px);
+      max-height: 78vh;
       object-fit: contain;
       filter: drop-shadow(0 8px 32px rgba(0,0,0,.4));
       animation: fadeInUp .9s .4s ease both;
@@ -713,6 +723,146 @@
       margin: 2.5rem 0;
     }
 
+
+    /* Kahoot 兩大類教學用法 */
+    .kahoot-mode-groups {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+    .kahoot-mode-group {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem;
+      backdrop-filter: blur(10px);
+    }
+    .mode-group-head {
+      display: flex;
+      align-items: flex-start;
+      gap: .85rem;
+      margin-bottom: 1rem;
+    }
+    .mode-group-icon {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.16);
+      font-size: 1.35rem;
+    }
+    .mode-group-label {
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      color: var(--sky-400);
+      margin-bottom: .15rem;
+    }
+    .mode-group-title {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.35;
+    }
+    .mode-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .85rem;
+    }
+    .mode-mini-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      min-height: 180px;
+    }
+    .mode-mini-title {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--amber-400);
+      margin-bottom: .5rem;
+    }
+    .mode-mini-desc {
+      color: var(--blue-100);
+      font-size: .92rem;
+      line-height: 1.75;
+    }
+    @media (max-width: 1024px) {
+      .kahoot-mode-groups { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .mode-mini-grid { grid-template-columns: 1fr; }
+      .mode-mini-card { min-height: auto; }
+    }
+
+    /* 單元標題 Logo 與 EdCafe 行動區 */
+    .unit-title-row {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) minmax(280px, 50vw);
+      align-items: end;
+      gap: clamp(1rem, 3vw, 2rem);
+      width: 100%;
+      max-width: none;
+    }
+    .unit-title-row .section-title { margin-bottom: .35rem; }
+    .unit-title-logo {
+      width: min(50vw, 640px);
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      justify-self: end;
+      align-self: end;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.16);
+      padding: .45rem;
+      box-shadow: 0 14px 36px rgba(0,0,0,.24);
+    }
+    .inline-resource-action { margin-top: 1.5rem; }
+    .edcafe-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .edcafe-action-row .btn-resource { min-width: min(312px, 100%); justify-content: center; }
+    .line-note {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      background: #06c755;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: var(--radius-lg);
+      padding: .75rem 1rem;
+      color: var(--white);
+      font-size: clamp(.95rem, 1.8vw, 1.05rem);
+      font-weight: 800;
+      line-height: 1.55;
+      box-shadow: 0 8px 24px rgba(6,199,85,.28);
+    }
+    .line-logo {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      flex: 0 0 36px;
+    }
+    @media (max-width: 760px) {
+      .unit-title-row { grid-template-columns: 1fr; max-width: 100%; }
+      .unit-title-logo { width: min(100%, 520px); justify-self: start; }
+      .edcafe-action-row { align-items: stretch; }
+      .edcafe-action-row .btn-resource,
+      .line-note { width: 100%; }
+    }
     /* ===== RESOURCE BUTTONS ===== */
     .btn-resource {
       display: inline-flex;
@@ -741,6 +891,58 @@
     }
     .btn-resource-sky:hover { box-shadow: 0 8px 36px rgba(14,165,233,.55); }
 
+
+    /* 大型行動按鈕區 */
+    .unit-action-bar {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .final-feedback-section {
+      padding-top: 3rem;
+      padding-bottom: 3.5rem;
+      text-align: center;
+    }
+    .feedback-cta-box {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(12px);
+    }
+    .feedback-title {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 900;
+      margin-bottom: .65rem;
+      color: var(--white);
+    }
+    .feedback-desc {
+      color: var(--blue-100);
+      margin-bottom: 1.35rem;
+      font-size: clamp(1rem, 2vw, 1.12rem);
+    }
+    .btn-feedback {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .65rem;
+      min-height: 58px;
+      padding: 1rem 2rem;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, var(--amber-400), var(--amber-500));
+      color: var(--gray-900);
+      text-decoration: none;
+      font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+      font-weight: 900;
+      box-shadow: 0 12px 34px rgba(245,158,11,.42);
+      transition: var(--transition);
+    }
+    .btn-feedback:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 46px rgba(245,158,11,.58);
+    }
     /* ===== EDCAFE SECTION ===== */
     .edcafe-cards {
       display: grid;
@@ -957,13 +1159,15 @@
     @media (orientation: landscape) and (min-width: 641px) and (max-width: 1024px) {
       .steps-grid { grid-template-columns: repeat(2, 1fr); }
       .edcafe-cards { grid-template-columns: repeat(3, 1fr); }
+      .hero-content { flex-basis: 38%; min-width: 300px; }
+      .hero-image-wrap { flex-basis: 62%; }
     }
   </style>
 </head>
-<body>
+<body id="top">
 
   <!-- ===== Navigation ===== -->
-  <nav id="top" aria-label="主要導覽">
+  <nav aria-label="主要導覽">
     <a href="#hero" class="nav-logo">
       <span class="logo-icon">🎓</span>
       奕鈞老師研習工作坊
@@ -996,7 +1200,10 @@
           從 Kahoot 遊戲化體驗到 edcafe 深度學習<br />
           讓科技成為教學的超級助手，而不是額外的負擔
         </p>
-        <div class="speaker-tag" aria-label="講者資訊">
+        <a class="speaker-tag speaker-link"
+           href="https://www.facebook.com/profile.php?id=61584090122881"
+           target="_blank" rel="noopener"
+           aria-label="前往奕鈞老師粉絲專頁">
           <div class="speaker-avatar">
             <img src="../003.png" alt="奕鈞老師" />
           </div>
@@ -1004,10 +1211,9 @@
             <div class="speaker-name">奕鈞老師</div>
             <div class="speaker-role">教育科技推廣講師 · 數位備課達人</div>
           </div>
-        </div>
+        </a>
         <div class="hero-cta">
-          <a id="cta-kahoot" href="#" class="btn-primary"
-             title="加入 Kahoot 破冰測驗（請將 href 替換為實際遊戲連結）">
+          <a id="cta-kahoot" href="https://kahoot.it/" class="btn-primary" target="_blank" rel="noopener" title="前往 kahoot.it 加入 Kahoot 破冰測驗">
             🚀 加入破冰測驗
           </a>
           <a href="#unit-kahoot" class="btn-outline">↓ 了解課程內容</a>
@@ -1061,7 +1267,10 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> 前往 Kahoot
           </a>
         </div>
-        <h2 id="kahoot-title" class="section-title">Kahoot! 跨越遊戲的教學力</h2>
+        <div class="unit-title-row">
+          <h2 id="kahoot-title" class="section-title">Kahoot! 跨越遊戲的教學力</h2>
+          <img src="Kahoot_Logo.jpg" alt="Kahoot Logo" class="unit-title-logo" />
+        </div>
         <p class="section-desc">
           不只是課堂娛樂！探索 Kahoot 的完整教學潛力——從破冰暖身到 AI 輔助出題，
           讓每一道題都成為學習的精準工具。
@@ -1088,6 +1297,10 @@
         <div class="use-case-tag">
           <span class="tag-icon">🌅</span>
           課堂暖身<br />破冰
+        </div>
+        <div class="use-case-tag">
+          <span class="tag-icon">📊</span>
+          形成性評量<br />教與學
         </div>
         <div class="use-case-tag">
           <span class="tag-icon">📖</span>
@@ -1129,9 +1342,9 @@
       <!-- Step 2 -->
       <div class="step-card reveal reveal-delay-1">
         <div class="step-badge">STEP 2 · 建立題目</div>
-        <div class="step-title">Create → New Kahoot</div>
+        <div class="step-title">建立 → 新增 Kahoot</div>
         <ul class="step-list">
-          <li>點選「Create」→「New kahoot」</li>
+          <li>點選「建立」→「新增 Kahoot」</li>
           <li>輸入題目文字</li>
           <li>設定選項（2～4 個），勾選正確答案</li>
           <li>設定時間限制（例：20 秒）</li>
@@ -1143,11 +1356,11 @@
       <!-- Step 3 -->
       <div class="step-card reveal reveal-delay-2">
         <div class="step-badge">STEP 3 · 開始遊戲</div>
-        <div class="step-title">Play → Teach 模式</div>
+        <div class="step-title">實況主持／講課</div>
         <ul class="step-list">
-          <li>到「Library」找到剛建好的 Kahoot</li>
-          <li>按「Play」→ 選擇「Teach」模式</li>
-          <li>螢幕會出現一組 <strong style="color:var(--amber-400)">Game PIN</strong>（遊戲代碼）</li>
+          <li>到「資料庫」找到剛建好的 Kahoot</li>
+          <li>選擇「實況主持」進行同步互動，或選擇「講課」穿插互動題</li>
+          <li>螢幕會出現一組 <strong style="color:var(--amber-400)">遊戲代碼</strong></li>
           <li>老師控制題目進度，大螢幕顯示即時結果與排行榜</li>
         </ul>
       </div>
@@ -1160,7 +1373,7 @@
           <li>
             學生到 <a href="https://kahoot.it" target="_blank" rel="noopener" class="step-link">🔗 kahoot.it</a> 或開啟 App
           </li>
-          <li>輸入 Game PIN → 填入暱稱</li>
+          <li>輸入遊戲代碼 → 填入暱稱</li>
           <li>等待老師開始，跟著節奏搶答</li>
         </ul>
       </div>
@@ -1185,6 +1398,12 @@
           <span class="ai-tool-icon">🎯</span>
           <span class="ai-tool-text">108 課綱素養題產生器</span>
         </a>
+        <a href="https://littleyi22.github.io/Kahoot/"
+           target="_blank" rel="noopener" class="ai-tool-link">
+          <span class="ai-tool-icon">⚙️</span>
+          <span class="ai-tool-text">Kahoot 試題匯入生成器 → 一鍵匯入題目</span>
+        </a>
+
       </div>
     </div>
 
@@ -1194,44 +1413,63 @@
     <div class="reveal">
       <div class="chapter-heading">
         <div class="chapter-num">三</div>
-        <div class="chapter-title">進階實戰：AI 輔助出題與多元模式</div>
+        <div class="chapter-title">進階實戰：Kahoot 兩大類教學用法</div>
       </div>
     </div>
 
-    <div class="highlight-cards">
-      <div class="h-card reveal">
-        <span class="h-card-icon">🚀</span>
-        <div class="h-card-label">體驗</div>
-        <div class="h-card-title">太空冒險模式</div>
-        <div class="h-card-desc">
-          在沒有先備知識的情境下，親身體驗學生的挑戰與樂趣，打破傳統、先玩後學！
+    <div class="kahoot-mode-groups">
+      <div class="kahoot-mode-group reveal">
+        <div class="mode-group-head">
+          <div class="mode-group-icon">🎙️</div>
+          <div>
+            <div class="mode-group-label">KAHOOT 段落</div>
+            <div class="mode-group-title">老師主導：現場互動、講授穿插與課後指派</div>
+          </div>
+        </div>
+        <div class="mode-mini-grid">
+          <div class="mode-mini-card">
+            <div class="mode-mini-title">🎮 實況主持</div>
+            <div class="mode-mini-desc">老師投影題目，全班用裝置輸入遊戲代碼同步作答。適合破冰、暖身、概念檢核與單元複習，可立即看見答題分布並進行補充說明。</div>
+          </div>
+          <div class="mode-mini-card">
+            <div class="mode-mini-title">🧑‍🏫 講課</div>
+            <div class="mode-mini-desc">把互動題穿插在講授流程中，讓學生邊聽邊回應。適合新概念說明、影片提問、閱讀理解停頓點與研習中的即時確認。</div>
+          </div>
+          <div class="mode-mini-card">
+            <div class="mode-mini-title">📌 指派</div>
+            <div class="mode-mini-desc">老師設定期限並分享連結、遊戲代碼或 QR code，學生依自己的速度完成。適合回家作業、預習任務、補救教學與缺課學生補做。</div>
+          </div>
         </div>
       </div>
-      <div class="h-card reveal reveal-delay-1">
-        <span class="h-card-icon">🔍</span>
-        <div class="h-card-label">揭密</div>
-        <div class="h-card-title">不只是經典模式</div>
-        <div class="h-card-desc">
-          探索教學模式（Teaching Mode）與多樣化題型——填空、投票、謎題，讓 Kahoot 服務課程目標。
+      <div class="kahoot-mode-group reveal reveal-delay-1">
+        <div class="mode-group-head">
+          <div class="mode-group-icon">🧠</div>
+          <div>
+            <div class="mode-group-label">KAHOOT 自主學習</div>
+            <div class="mode-group-title">學生主導：複習、記憶與自學型測驗遊戲</div>
+          </div>
         </div>
-      </div>
-      <div class="h-card reveal reveal-delay-2">
-        <span class="h-card-icon">⚡</span>
-        <div class="h-card-label">實戰</div>
-        <div class="h-card-title">AI 輔助出題與高效匯入</div>
-        <div class="h-card-desc">
-          用 AI 一鍵生成結構化題目，再透過專屬匯入工具批次上傳，備課時間從小時縮短到分鐘。
+        <div class="mode-mini-grid">
+          <div class="mode-mini-card">
+            <div class="mode-mini-title">📖 學習</div>
+            <div class="mode-mini-desc">學生依題目逐步練習，答完後可檢查結果並重練不熟的內容。適合課後複習、考前整理與建立固定自學節奏。</div>
+          </div>
+          <div class="mode-mini-card">
+            <div class="mode-mini-title">🃏 學習字卡</div>
+            <div class="mode-mini-desc">適合單字、定義、人物、事件、公式與關鍵概念。學生先回想再翻卡檢查，把不熟的卡片留到後面反覆練習。</div>
+          </div>
+          <div class="mode-mini-card">
+            <div class="mode-mini-title">🎯 單人遊玩／自學型測驗遊戲</div>
+            <div class="mode-mini-desc">學生自己完成一輪遊戲化測驗，練習速度、正確率與熟練度。適合學習站、個別進度、完成主要任務後的延伸挑戰。</div>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="reveal">
-      <a id="btn-kahoot-importer"
-         href="https://littleyi22.github.io/Kahoot/"
+    <div class="unit-action-bar reveal">
+      <a href="kahoot-guide.html"
          target="_blank" rel="noopener"
-         class="btn-resource">
-        ⚙️ 開啟 Kahoot 試題匯入生成器
-        <span style="font-size:.85rem;opacity:.85;font-weight:500;">→ 一鍵匯入題目</span>
+         class="btn-resource btn-resource-sky">
+        📘 Kahoot 教師使用說明書
       </a>
     </div>
 
@@ -1250,7 +1488,10 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> 前往 edcafe
           </a>
         </div>
-        <h2 id="edcafe-title" class="section-title">edcafe 讓學習深化、數據說話</h2>
+        <div class="unit-title-row">
+          <h2 id="edcafe-title" class="section-title">edcafe 讓學習深化、數據說話</h2>
+          <img src="EdcafeAI-640x640.jpg" alt="EdCafe AI Logo" class="unit-title-logo" />
+        </div>
         <p class="section-desc">
           超越傳統練習，用科學化的學習設計強化記憶留存，
           並透過即時分析掌握每位學生的學習盲點。
@@ -1359,6 +1600,15 @@
       </div>
     </div>
 
+    
+      <div class="inline-resource-action reveal">
+        <a href="https://app.edcafe.ai/youtube-quiz/6a4a148966ec409cd650c050"
+           target="_blank" rel="noopener"
+           class="btn-resource btn-resource-sky"
+           style="background: linear-gradient(135deg, var(--purple-500), var(--indigo-600)); box-shadow: 0 4px 24px rgba(147, 51, 234, 0.35);">
+          📝 與 AI 精準溝通的藝術：國中小教師必學的提示詞工程測驗
+        </a>
+      </div>
     <hr class="chapter-sep" />
 
     <!-- ── 章節三：閃卡 ── -->
@@ -1417,10 +1667,67 @@
 
     <hr class="chapter-sep" />
 
-    <!-- ── 章節四：AI 分析助理 ── -->
+    <!-- ── 章節四：測驗 ── -->
     <div class="reveal">
       <div class="chapter-heading">
         <div class="chapter-num" style="background: linear-gradient(135deg, var(--purple-500), var(--indigo-600));">四</div>
+        <div class="chapter-title">測驗</div>
+      </div>
+    </div>
+
+    <div class="what-is-box reveal">
+      <div class="what-is-tagline" style="color:var(--purple-400);">
+        📝 將課堂重點轉成即時檢核，快速掌握學生理解狀況
+      </div>
+      <div class="what-is-desc">
+        EdCafe 的測驗適合用在課前診斷、課中形成性評量、課後複習與單元總結。老師可以用 AI 協助產題，再透過報表找出全班共通迷思與個別學生需要補強的地方。
+      </div>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-badge" style="background:rgba(168,85,247,.18); color:var(--purple-400);">老師端流程</div>
+        <div class="step-title">1. 建立測驗</div>
+        <ul class="step-list">
+          <li>選擇測驗功能，輸入主題或貼上教材內容</li>
+          <li>可請 AI 依年級、難度與題型產生題目</li>
+          <li>題型可搭配選擇題、是非題、簡答題或素養題</li>
+        </ul>
+      </div>
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-badge" style="background:rgba(168,85,247,.18); color:var(--purple-400);">老師端流程</div>
+        <div class="step-title">2. 編修題目</div>
+        <ul class="step-list">
+          <li>檢查題幹是否清楚、選項是否有鑑別度</li>
+          <li>加入解析，讓學生作答後能知道錯在哪裡</li>
+          <li>依班級程度調整題數、難度與作答時間</li>
+        </ul>
+      </div>
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-badge" style="background:rgba(168,85,247,.18); color:var(--purple-400);">老師端流程</div>
+        <div class="step-title">3. 指派與作答</div>
+        <ul class="step-list">
+          <li>將測驗指派給班級或分享連結給學生</li>
+          <li>可安排為課堂即時檢核、回家作業或補救練習</li>
+          <li>學生完成後，老師即可查看作答結果</li>
+        </ul>
+      </div>
+      <div class="step-card reveal reveal-delay-3">
+        <div class="step-badge" style="background:rgba(168,85,247,.18); color:var(--purple-400);">老師端流程</div>
+        <div class="step-title">4. 分析與補救</div>
+        <ul class="step-list">
+          <li>查看答對率、錯題分布與學生完成情形</li>
+          <li>找出需要重講的概念或需要補強的學生</li>
+          <li>搭配 AI 分析助理產出下一步教學建議</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="chapter-sep" />
+    <!-- ── 章節五：AI 分析助理 ── -->
+    <div class="reveal">
+      <div class="chapter-heading">
+        <div class="chapter-num" style="background: linear-gradient(135deg, var(--purple-500), var(--indigo-600));">五</div>
         <div class="chapter-title">AI 分析助理（Analytics Assistant）</div>
       </div>
     </div>
@@ -1451,7 +1758,7 @@
         <div class="step-badge" style="background:rgba(168,85,247,.18); color:var(--purple-400);">操作流程</div>
         <div class="step-title">老師如何使用 AI 分析助理？</div>
         <ul class="step-list">
-          <li>在 Edcafe 完成一個活動（互動影片、閃卡）</li>
+          <li>在 Edcafe 完成一個活動（互動影片、閃卡、測驗）</li>
           <li>開啟該活動的「分析／報表」頁面</li>
           <li>點選「AI 分析助理」或相似按鈕</li>
           <li><strong>獲得 AI 產出：</strong>總結（全班情況）、關鍵問題、建議行動</li>
@@ -1459,10 +1766,23 @@
       </div>
     </div>
 
-    <div class="reveal" style="margin-top: 2rem;">
-      <a id="btn-edcafe" href="https://www.edcafechinese.com/" target="_blank" rel="noopener" class="btn-resource btn-resource-sky" style="background: linear-gradient(135deg, var(--purple-500), var(--indigo-600)); box-shadow: 0 4px 24px rgba(147, 51, 234, 0.35);">
+    <div class="edcafe-action-row reveal">
+      <a id="btn-edcafe" href="https://www.edcafechinese.com/"
+         target="_blank" rel="noopener"
+         class="btn-resource btn-resource-sky"
+         style="background: linear-gradient(135deg, var(--purple-500), var(--indigo-600)); box-shadow: 0 4px 24px rgba(147, 51, 234, 0.35);">
         🌐 前往 edcafe 體驗平台
       </a>
+      <a href="edcafe-guide.html"
+         target="_blank" rel="noopener"
+         class="btn-resource btn-resource-sky"
+         style="background: linear-gradient(135deg, var(--purple-500), var(--indigo-600)); box-shadow: 0 4px 24px rgba(147, 51, 234, 0.35);">
+        📘 EdCafe 教師使用手冊
+      </a>
+      <div class="line-note">
+        <img src="LINE_logo.svg.webp" alt="LINE" class="line-logo" />
+        <span>Edcafe AI 中文版 Line@ ID：@470qfati → 免費索取 Premium</span>
+      </div>
     </div>
   </section>
 
@@ -1752,6 +2072,18 @@ ChatGPT 在 2022 年 11 月推出後瞬間爆紅，最主要的原因是？
 
   <hr class="section-divider" />
 
+  <!-- ===== FEEDBACK CTA ===== -->
+  <section class="final-feedback-section" aria-labelledby="feedback-title">
+    <div class="feedback-cta-box reveal">
+      <h2 id="feedback-title" class="feedback-title">研習活動回饋暨證書發送表</h2>
+      <p class="feedback-desc">完成研習後請填寫表單，作為活動回饋與證書寄送依據。</p>
+      <a href="https://forms.gle/cSvwCvzqBbUZxcKt6"
+         target="_blank" rel="noopener"
+         class="btn-feedback">
+        📝 研習活動回饋暨證書發送表
+      </a>
+    </div>
+  </section>
   <!-- ===== FOOTER ===== -->
   <footer aria-label="頁尾">
     <div class="footer-inner">
